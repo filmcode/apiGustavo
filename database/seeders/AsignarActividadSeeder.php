@@ -38,10 +38,11 @@ class AsignarActividadSeeder extends Seeder
                 $daysVenc = $faker->randomDigit();
                 $date_start = Carbon::now()->subDays($daysAsig)->format('Y-m-d');
                 $date_end = Carbon::now()->addDays($daysVenc)->format('Y-m-d');
+                $user_name = User::find($user_random_id)->name;
                 if ($count_homework < 5) {
                     DB::table('actividades')->where('id', $actividad->id)->update([
                         'user_id' => $user_random_id,
-                        'user_name' => 'count: '.$count_homework,
+                        'user_name' => $user_name,
                         'status' => $statusHomework,
                         'date_start'=> $date_start,
                         'date_end'=> $date_end,
